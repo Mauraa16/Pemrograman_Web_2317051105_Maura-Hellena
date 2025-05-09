@@ -9,7 +9,10 @@ $user = mysqli_fetch_assoc($result);
 if ($user && password_verify($password, $user['password'])) {
 $_SESSION['user'] = $user['username'];
 header("Location: dashboard.php");
+exit();
 } else {
-echo "Login gagal. Username atau password salah.";
+$_SESSION['error'] = "Login gagal. Username atau password salah.";
+header("Location: index.php");
+exit();
 }
 ?>
